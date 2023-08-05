@@ -10,7 +10,7 @@ import {
 import ErrorPage from './components/ErrorPage.tsx';
 import SignUp from './components/SignUp.tsx';
 import SignIn from './components/SignIn.tsx';
-import User from './components/UserPage.tsx';
+import Users from './components/UserPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/user/:id",
-        element: <User />,
+        element: <Users />,
       }
     ],
   },

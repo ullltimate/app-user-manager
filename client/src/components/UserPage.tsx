@@ -1,10 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
+import users from './helpUsers';
+import User from './User';
 
-function User() {
+function Users() {
   return (
     <>
         <ButtonGroup aria-label="Basic example" className='py-3 justify-content-end'>
@@ -29,36 +30,11 @@ function User() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                    <Form>
-                        <Form.Check type={'checkbox'} id={`default-checkbox`} />
-                    </Form>
-                </td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>
-                    <Form>
-                        <Form.Check type={'checkbox'} id={`default-checkbox`} />
-                    </Form>
-                </td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
+              {users.map(el => <User id={el.id} name={el.name} email={el.email} dateSignUp={el.singUpdate} dateSignIn={el.singIndate} status={el.status}/>)}
             </tbody>
         </Table>
     </>
   )
 }
 
-export default User
+export default Users
