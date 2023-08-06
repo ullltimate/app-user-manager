@@ -91,4 +91,29 @@ router.get('/users/:id', async (req, res) => {
     }
 })
 
+router.delete('/users', async (req, res) => {
+    try {
+        await User.deleteMany({});
+        return res.status(200).json({message: 'All users remove'});
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'Server error'});
+    }
+})
+
+router.delete('/users/:id', async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const user = await User.findOne({_id})
+        if(!user){
+            return res.status(404).json({message: "User with this id not found"});
+        }
+        await User.deleteOne({_id});
+        return res.status(200).json({message: 'User with this id remove'});
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'Server error'});
+    }
+})
+
 module.exports = router
