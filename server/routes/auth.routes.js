@@ -77,4 +77,18 @@ router.get('/users', async (req, res) => {
     }
 })
 
+router.get('/users/:id', async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const user = await User.findOne({_id});
+        if(!user){
+            return res.status(404).json({message: "User with this id not found"});
+        }
+        return res.status(200).json(user);
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'Server error'});
+    }
+})
+
 module.exports = router
