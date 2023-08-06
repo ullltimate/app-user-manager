@@ -116,4 +116,31 @@ router.delete('/users/:id', async (req, res) => {
     }
 })
 
+router.put('/users', async (req, res) => {
+    try {
+        const {status} = req.body;
+        await User.updateMany({}, {$set: {status: status}});
+        return res.status(200).json({message: `All users ${status}`});
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'Server error'});
+    }
+})
+
+router.put('/users/:id', async (req, res) => {
+    try {
+        const _id = req.params.id;
+        const {status} = req.body;
+        const user = await User.findOne({_id});
+        if(!user){
+            return res.status(404).json({message: "User with this id not found"});
+        }
+        await User.updateOne({_id}, {$set: {status: status}});
+        return res.status(200).json({message: `User ${_id} ${status}`});
+    } catch (e) {
+        console.log(e);
+        res.send({message: 'Server error'});
+    }
+})
+
 module.exports = router
