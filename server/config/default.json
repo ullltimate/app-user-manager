@@ -1,4 +1,5 @@
 {
     "serverPort": 5000,
-    "dbUrl": "mongodb+srv://ullltimate:keine2809@cluster0.lclqfcc.mongodb.net/mongodb?retryWrites=true&w=majority"
+    "dbUrl": "mongodb+srv://ullltimate:keine2809@cluster0.lclqfcc.mongodb.net/mongodb?retryWrites=true&w=majority",
+    "secretKey": "secret-key"
 }
