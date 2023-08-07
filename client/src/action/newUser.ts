@@ -26,3 +26,16 @@ export const login = async (email: string, password: string) => {
         alert(error.response.data.message)
     }
 }
+
+export function logOut(callback:any){
+    localStorage.removeItem('tokenUser');
+    localStorage.removeItem('userId');
+    callback('/signIn')
+}
+
+export async function singIn(email:string, password: string, callback: any){
+    await login(email, password);
+    if(localStorage.getItem('tokenUser')){
+      callback(`/user/${localStorage.getItem('userId')}`)
+    }
+}

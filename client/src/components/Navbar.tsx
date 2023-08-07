@@ -2,9 +2,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link, useNavigate,} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { logOut } from '../action/newUser';
 
 function Header() {
   const [token, setToken] = useState<string|null>(null);
@@ -16,12 +17,6 @@ function Header() {
     }
   })
 
-  function logOut(){
-    localStorage.removeItem('tokenUser');
-    localStorage.removeItem('userId');
-    navigate('/')
-  }
-
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -31,7 +26,7 @@ function Header() {
               <Link className='p-3 text-white text-decoration-none' to={'/'}>Sign Up</Link>
               <Link className='p-3 text-white text-decoration-none' to={"/signIn"}>Sign In</Link>
             </>
-              : <Button className='p-3 btn-dark' onClick={logOut}>Log out</Button>
+              : <Button className='p-3 btn-dark' onClick={() => logOut(navigate)}>Log out</Button>
             }
         </Container>
       </Navbar>
