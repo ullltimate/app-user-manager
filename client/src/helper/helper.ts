@@ -1,0 +1,1 @@
+export const urlAPI: string = 'http://localhost:5000/api/auth';
