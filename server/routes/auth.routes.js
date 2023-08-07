@@ -48,6 +48,9 @@ router.post('/login', async (req, res) => {
         if(!isPassValid){
             return res.status(400).json({message: "Invalid password"});
         }
+        if(user.status === 'block'){
+            return res.status(400).json({message: "User blocked"});
+        }
         await User.updateOne({email}, {$set: {signIn: Date.now()}});
         const token = jwt.sign({id: user.id}, config.get('secretKey'), {expiresIn:"1h"});
         return res.json({
