@@ -11,12 +11,13 @@ function SignUp() {
   const [password, setPassord] = useState('');
 
   return (
-    <>
+    <>  
+        <h3 className='px-3 pt-3'>REGISTRATION</h3>
         <Form className='p-3'>
           <Input value={name} id={'name'} placeholder={"Name"} type={'text'} label={'Name'} setValue={setName}/>
           <Input value={email} id={'email'} placeholder={"Enter email"} type={'email'} label={'Email address'} setValue={setEmail}/>
           <Input value={password} id={'password'} placeholder={"Password"} type={'password'} label={'Password'} setValue={setPassord}/>
-          <Button variant="primary" onClick={() => registration(name, email, password)}>
+          <Button variant="secondary" onClick={() => registration(name, email, password)}>
             Sign Up
           </Button>
         </Form>

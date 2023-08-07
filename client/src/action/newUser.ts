@@ -13,3 +13,16 @@ export const registration = async (name:string, email: string, password: string)
         alert(error.response.data.message)
     }
 }
+
+export const login = async (email: string, password: string) => {
+    try {
+        const response = await axios.post(`${urlAPI}/login`, {
+            email,
+            password,
+        })
+        localStorage.setItem('tokenUser', response.data.token);
+        localStorage.setItem('userId', response.data.user.id);
+    } catch (error: any) {
+        alert(error.response.data.message)
+    }
+}

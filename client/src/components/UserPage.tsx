@@ -4,10 +4,14 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import users from './helpUsers';
 import User from './User';
+import Header from './Navbar';
+import { Container } from 'react-bootstrap';
 
 function Users() {
   return (
-    <>
+    <> 
+      <Header />
+      <Container>
         <ButtonGroup aria-label="Basic example" className='py-3 justify-content-end'>
             <Button variant="secondary"><i className="bi bi-lock"></i></Button>
             <Button variant="secondary"><i className="bi bi-unlock"></i></Button>
@@ -30,9 +34,10 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              {users.map(el => <User id={el.id} name={el.name} email={el.email} dateSignUp={el.singUpdate} dateSignIn={el.singIndate} status={el.status}/>)}
+              {users.map(el => <User key={el.id} id={el.id} name={el.name} email={el.email} dateSignUp={el.singUpdate} dateSignIn={el.singIndate} status={el.status}/>)}
             </tbody>
         </Table>
+      </Container>
     </>
   )
 }
