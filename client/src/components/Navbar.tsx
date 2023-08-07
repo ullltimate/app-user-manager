@@ -12,8 +12,8 @@ function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(localStorage.getItem('tokenUser')){
-      setToken(localStorage.getItem('tokenUser'));
+    if(sessionStorage.getItem('tokenUser')){
+      setToken(sessionStorage.getItem('tokenUser'));
     }
   })
 

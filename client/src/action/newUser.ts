@@ -20,22 +20,22 @@ export const login = async (email: string, password: string) => {
             email,
             password,
         })
-        localStorage.setItem('tokenUser', response.data.token);
-        localStorage.setItem('userId', response.data.user.id);
+        sessionStorage.setItem('tokenUser', response.data.token);
+        sessionStorage.setItem('userId', response.data.user.id);
     } catch (error: any) {
         alert(error.response.data.message)
     }
 }
 
 export function logOut(callback:any){
-    localStorage.removeItem('tokenUser');
-    localStorage.removeItem('userId');
+    sessionStorage.removeItem('tokenUser');
+    sessionStorage.removeItem('userId');
     callback('/signIn')
 }
 
 export async function singIn(email:string, password: string, callback: any){
     await login(email, password);
-    if(localStorage.getItem('tokenUser')){
-      callback(`/user/${localStorage.getItem('userId')}`)
+    if(sessionStorage.getItem('tokenUser')){
+      callback(`/user/${sessionStorage.getItem('userId')}`)
     }
 }
