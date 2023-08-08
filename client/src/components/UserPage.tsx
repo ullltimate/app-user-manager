@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { getUsers } from '../action/getUsers';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteUsers, removeUsers } from '../action/deleteUser';
+import { updateStatus, updateUsers } from '../action/updateStatus';
 
 function Users() {
   const [users, setUsers] = useState<any>(null);
@@ -43,8 +44,8 @@ function Users() {
       <Header />
       <Container>
         <ButtonGroup aria-label="Basic example" className='py-3 justify-content-end'>
-            <Button variant="secondary"><i className="bi bi-lock"></i></Button>
-            <Button variant="secondary"><i className="bi bi-unlock"></i></Button>
+            <Button variant="secondary" onClick={() => {all ? updateUsers('block', navigate, setUsers, setLoader, setCheckboxes, setAll) : updateStatus('block', checkboxes, params.id, setCheckboxes, navigate, setUsers, setLoader)}}><i className="bi bi-lock"></i></Button>
+            <Button variant="secondary" onClick={() => {all ? updateUsers('unblock', navigate, setUsers, setLoader, setCheckboxes, setAll) : updateStatus('unblock', checkboxes, params.id, setCheckboxes, navigate, setUsers, setLoader)}}><i className="bi bi-unlock"></i></Button>
             <Button variant="secondary" onClick={() => {all ? deleteUsers(navigate) : removeUsers(checkboxes, params.id, setCheckboxes, navigate, setUsers, setLoader)}}><i className="bi bi-trash"></i></Button>
         </ButtonGroup>
         <Table striped bordered hover>
