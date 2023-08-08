@@ -12,6 +12,7 @@ function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassord] = useState('');
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
   
   return (
     <>
@@ -21,7 +22,8 @@ function SignIn() {
         <Form className='p-3'>
             <Input value={email} id={'email'} placeholder={"Enter email"} type={'email'} label={'Email address'} setValue={setEmail}/>
             <Input value={password} id={'password'} placeholder={"Password"} type={'password'} label={'Password'} setValue={setPassord}/>
-            <Button variant="secondary" onClick={() => singIn(email, password, navigate)}>
+            <p className="font-monospace">{message}</p>
+            <Button variant="secondary" onClick={() => singIn(email, password, navigate, setMessage)}>
               Sign In
             </Button>
         </Form>

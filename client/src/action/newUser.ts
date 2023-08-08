@@ -14,7 +14,7 @@ export const registration = async (name:string, email: string, password: string,
     }
 }
 
-export const login = async (email: string, password: string) => {
+export const login = async (email: string, password: string, setMessage: any) => {
     try {
         const response = await axios.post(`${urlAPI}/login`, {
             email,
@@ -23,7 +23,7 @@ export const login = async (email: string, password: string) => {
         sessionStorage.setItem('tokenUser', response.data.token);
         sessionStorage.setItem('userId', response.data.user.id);
     } catch (error: any) {
-        alert(error.response.data.message)
+        setMessage(error.response.data.message)
     }
 }
 
@@ -33,8 +33,8 @@ export function logOut(callback:any){
     callback('/signIn')
 }
 
-export async function singIn(email:string, password: string, callback: any){
-    await login(email, password);
+export async function singIn(email:string, password: string, callback: any, setMessage: any){
+    await login(email, password, setMessage);
     if(sessionStorage.getItem('tokenUser')){
       callback(`/user/${sessionStorage.getItem('userId')}`)
     }
