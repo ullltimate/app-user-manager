@@ -7,12 +7,16 @@ import Header from './Navbar';
 import { Container, Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { getUsers } from '../action/getUsers';
+import { useNavigate, useParams } from 'react-router-dom';
+import { deleteUsers, removeUsers } from '../action/deleteUser';
 
 function Users() {
   const [users, setUsers] = useState<any>(null);
   const [isLoader, setLoader] = useState(true);
   const [all, setAll] = useState(false);
   const [checkboxes, setCheckboxes] = useState<any>([]);
+  const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
     all ? setCheckboxes(users.map((el: any) => el._id)) : setCheckboxes([]);
@@ -32,6 +36,7 @@ function Users() {
     getUsers(setUsers, setLoader);
   },[])
   console.log(users)
+  console.log(params.id)
 
   return (
     <> 
@@ -40,7 +45,7 @@ function Users() {
         <ButtonGroup aria-label="Basic example" className='py-3 justify-content-end'>
             <Button variant="secondary"><i className="bi bi-lock"></i></Button>
             <Button variant="secondary"><i className="bi bi-unlock"></i></Button>
-            <Button variant="secondary"><i className="bi bi-trash"></i></Button>
+            <Button variant="secondary" onClick={() => {all ? deleteUsers(navigate) : removeUsers(checkboxes, params.id, setCheckboxes, navigate, setUsers, setLoader)}}><i className="bi bi-trash"></i></Button>
         </ButtonGroup>
         <Table striped bordered hover>
             <thead>
@@ -68,7 +73,7 @@ function Users() {
                 </div>
               </td></tr>
               :
-              users && users.map((el: any) => <User key={el._id} id={el._id} name={el.name} email={el.email} dateSignUp={el.signUp} dateSignIn={el.signIn} status={el.status} onchange={(event:any) => changeCheckboxes(event.target.id)} checked={checkboxes.includes(el._id)}/>)
+              users && users.map((el: any) => <User key={el._id} id={el._id} name={el.name} email={el.email} dateSignUp={el.signUp.slice(0, 10)} dateSignIn={el.signIn.slice(0,10)} status={el.status} onchange={(event:any) => changeCheckboxes(event.target.id)} checked={checkboxes.includes(el._id)}/>)
             }
             </tbody>
         </Table>
