@@ -31,13 +31,10 @@ function Users() {
         : [...checkboxes, id]
     );
   };
-  console.log(checkboxes)
 
   useEffect(() => {
     getUsers(setUsers, setLoader);
   },[])
-  console.log(users)
-  console.log(params.id)
 
   return (
     <> 
