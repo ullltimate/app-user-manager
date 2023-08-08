@@ -1,1 +1,1 @@
-export const urlAPI: string = 'http://localhost:5000/api/auth';
+export const urlAPI: string = 'https://app-user-manager-production.up.railway.app/api/auth';
