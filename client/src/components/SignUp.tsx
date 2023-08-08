@@ -9,6 +9,7 @@ function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassord] = useState('');
+  const [message, setMessage] = useState('');
 
   return (
     <>  
@@ -17,7 +18,8 @@ function SignUp() {
           <Input value={name} id={'name'} placeholder={"Name"} type={'text'} label={'Name'} setValue={setName}/>
           <Input value={email} id={'email'} placeholder={"Enter email"} type={'email'} label={'Email address'} setValue={setEmail}/>
           <Input value={password} id={'password'} placeholder={"Password"} type={'password'} label={'Password'} setValue={setPassord}/>
-          <Button variant="secondary" onClick={() => registration(name, email, password)}>
+          <p className="font-monospace">{message}</p>
+          <Button variant="secondary" onClick={() => {registration(name, email, password, setMessage); setName(''); setEmail(''); setPassord('')}}>
             Sign Up
           </Button>
         </Form>

@@ -1,16 +1,16 @@
 import axios from "axios";
 import { urlAPI } from "../helper/helper";
 
-export const registration = async (name:string, email: string, password: string) => {
+export const registration = async (name:string, email: string, password: string, setMessage: any) => {
     try {
         const response = await axios.post(`${urlAPI}/registration`, {
             name,
             email,
             password,
         })
-        alert(response.data.message)
+        setMessage(response.data.message)
     } catch (error: any) {
-        alert(error.response.data.message)
+        setMessage(error.response.data.message)
     }
 }
 
