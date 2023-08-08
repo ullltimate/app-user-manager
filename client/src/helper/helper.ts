@@ -1,0 +1,1 @@
+export const urlAPI: string = 'https://app-user-manager-production.up.railway.app/api/auth';
