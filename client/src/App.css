@@ -1,0 +1,13 @@
+@media screen and (max-width: 770px) {
+    table tr > *:nth-child(2) {
+        display: none;
+    }
+}
+@media screen and (max-width: 525px) {
+    table tr > *:nth-child(5) {
+        display: none;
+    }
+    table tr > *:nth-child(6) {
+        display: none;
+    }
+}
