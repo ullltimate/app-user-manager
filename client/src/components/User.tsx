@@ -6,7 +6,7 @@ function User(props: any) {
         <tr>
           <td>
               <Form>
-                  <Form.Check type={'checkbox'} id={props.id} />
+                  <Form.Check type={'checkbox'} id={props.id} onChange={props.onchange} checked={props.checked}/>
               </Form>
           </td>
           <td>{props.id}</td>

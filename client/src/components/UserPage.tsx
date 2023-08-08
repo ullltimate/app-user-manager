@@ -11,6 +11,22 @@ import { getUsers } from '../action/getUsers';
 function Users() {
   const [users, setUsers] = useState<any>(null);
   const [isLoader, setLoader] = useState(true);
+  const [all, setAll] = useState(false);
+  const [checkboxes, setCheckboxes] = useState<any>([]);
+
+  useEffect(() => {
+    all ? setCheckboxes(users.map((el: any) => el._id)) : setCheckboxes([]);
+  }, [all]);
+
+
+  const changeCheckboxes = (id: any) => {
+    setCheckboxes(
+      checkboxes.includes(id)
+        ? checkboxes.filter((el: any) => el !== id)
+        : [...checkboxes, id]
+    );
+  };
+  console.log(checkboxes)
 
   useEffect(() => {
     getUsers(setUsers, setLoader);
@@ -31,7 +47,7 @@ function Users() {
               <tr>
                 <th>
                     <Form>
-                        <Form.Check type={'checkbox'} id={`default-checkbox`} />
+                        <Form.Check type={'checkbox'} id={`default-checkbox`} onChange={() => setAll(!all)} checked={all}/>
                     </Form>
                 </th>
                 <th>Id</th>
@@ -52,7 +68,7 @@ function Users() {
                 </div>
               </td></tr>
               :
-              users.map((el: any) => <User key={el._id} id={el._id} name={el.name} email={el.email} dateSignUp={el.signUp} dateSignIn={el.signIn} status={el.status}/>)
+              users && users.map((el: any) => <User key={el._id} id={el._id} name={el.name} email={el.email} dateSignUp={el.signUp} dateSignIn={el.signIn} status={el.status} onchange={(event:any) => changeCheckboxes(event.target.id)} checked={checkboxes.includes(el._id)}/>)
             }
             </tbody>
         </Table>
