@@ -15,7 +15,7 @@ TypeScript, React, React Router, React Bootstrap, Node.js, Express, MongoDB, Mon
 
 ### Demo           
 
-Frontend: https://develop--sensational-banoffee-fa0248.netlify.app/user/64d2c043d5e76b3f2ce65ae3                       
+Frontend: https://develop--sensational-banoffee-fa0248.netlify.app/                      
 Backend: https://app-user-manager-production.up.railway.app/
 
 ### Запуск проекта локально
